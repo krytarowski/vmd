@@ -37,6 +37,9 @@
 #include <machine/param.h>
 #include <machine/psl.h>
 #include <machine/pte.h>
+#if defined(__NetBSD__)
+#include "compat/specialreg.h"
+#endif
 #include <machine/specialreg.h>
 #if defined(__NetBSD__)
 #include "compat/vmmvar.h" 
@@ -1447,7 +1450,7 @@ vcpu_exit_pci(struct vm_run_params *vrp)
 		intr = pci_handle_io(vrp);
 		break;
 	default:
-		log_warnx("%s: unknown PCI register 0x%llx",
+		log_warnx("%s: unknown PCI register 0x%" PRIx64,
 		    __progname, (uint64_t)vei->vei.vei_port);
 		break;
 	}
