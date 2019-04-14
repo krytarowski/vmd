@@ -100,7 +100,7 @@ dump_descriptor_chain(struct vring_desc *desc, int16_t dxx)
 {
 	log_debug("descriptor chain @ %d", dxx);
 	do {
-		log_debug("desc @%d addr/len/flags/next = 0x%llx / 0x%x "
+		log_debug("desc @%d addr/len/flags/next = 0x%" PRIx64 " / 0x%x "
 		    "/ 0x%x / 0x%x",
 		    dxx,
 		    desc[dxx].addr,
@@ -110,7 +110,7 @@ dump_descriptor_chain(struct vring_desc *desc, int16_t dxx)
 		dxx = desc[dxx].next;
 	} while (desc[dxx].flags & VRING_DESC_F_NEXT);
 
-	log_debug("desc @%d addr/len/flags/next = 0x%llx / 0x%x / 0x%x "
+	log_debug("desc @%d addr/len/flags/next = 0x%" PRIx64 " / 0x%x / 0x%x "
 	    "/ 0x%x",
 	    dxx,
 	    desc[dxx].addr,
@@ -235,7 +235,7 @@ viornd_notifyq(void)
 		if (write_mem(desc[avail->ring[aidx]].addr,
 		    rnd_data, desc[avail->ring[aidx]].len)) {
 			log_warnx("viornd: can't write random data @ "
-			    "0x%llx",
+			    "0x%" PRIx64,
 			    desc[avail->ring[aidx]].addr);
 		} else {
 			/* ret == 1 -> interrupt needed */
@@ -390,7 +390,7 @@ vioblk_finish_read(struct ioinfo *info)
 	struct virtio_backing *file;
 
 	file = info->file;
-	if (file->pread(file->p, info->buf, info->len, info->offset) != info->len) {
+	if (file->pread(file->p, (char *)info->buf, info->len, info->offset) != info->len) {
 		info->error = errno;
 		log_warn("vioblk read error");
 		return NULL;
@@ -434,7 +434,7 @@ vioblk_finish_write(struct ioinfo *info)
 	struct virtio_backing *file;
 
 	file = info->file;
-	if (file->pwrite(file->p, info->buf, info->len, info->offset) != info->len) {
+	if (file->pwrite(file->p, (char *)info->buf, info->len, info->offset) != info->len) {
 		log_warn("vioblk write error");
 		return EIO;
 	}
@@ -477,7 +477,7 @@ vioblk_notifyq(struct vioblk_dev *dev)
 	}
 
 	if (read_mem(q_gpa, vr, vr_sz)) {
-		log_warnx("error reading gpa 0x%llx", q_gpa);
+		log_warnx("error reading gpa 0x%" PRIx64, q_gpa);
 		goto out;
 	}
 
@@ -508,7 +508,7 @@ vioblk_notifyq(struct vioblk_dev *dev)
 
 		/* Read command from descriptor ring */
 		if (read_mem(cmd_desc->addr, &cmd, cmd_desc->len)) {
-			log_warnx("vioblk: command read_mem error @ 0x%llx",
+			log_warnx("vioblk: command read_mem error @ 0x%" PRIx64,
 			    cmd_desc->addr);
 			goto out;
 		}
@@ -539,14 +539,14 @@ vioblk_notifyq(struct vioblk_dev *dev)
 				if (secdata == NULL) {
 					vioblk_free_info(info);
 					log_warnx("vioblk: block read error, "
-					    "sector %lld", cmd.sector);
+					    "sector %" PRId64, cmd.sector);
 					goto out;
 				}
 
 				if (write_mem(secdata_desc->addr, secdata,
 				    secdata_desc->len)) {
 					log_warnx("can't write sector "
-					    "data to gpa @ 0x%llx",
+					    "data to gpa @ 0x%" PRIx64,
 					    secdata_desc->addr);
 					dump_descriptor_chain(desc,
 					    cmd_desc_idx);
@@ -569,7 +569,7 @@ vioblk_notifyq(struct vioblk_dev *dev)
 			ds = VIRTIO_BLK_S_OK;
 			if (write_mem(ds_desc->addr, &ds, ds_desc->len)) {
 				log_warnx("can't write device status data @ "
-				    "0x%llx", ds_desc->addr);
+				    "0x%" PRIx64, ds_desc->addr);
 				dump_descriptor_chain(desc, cmd_desc_idx);
 				goto out;
 			}
@@ -616,7 +616,7 @@ vioblk_notifyq(struct vioblk_dev *dev)
 
 				if (info == NULL) {
 					log_warnx("wr vioblk: can't read "
-					    "sector data @ 0x%llx",
+					    "sector data @ 0x%" PRIx64,
 					    secdata_desc->addr);
 					dump_descriptor_chain(desc,
 					    cmd_desc_idx);
@@ -646,7 +646,7 @@ vioblk_notifyq(struct vioblk_dev *dev)
 			ds = VIRTIO_BLK_S_OK;
 			if (write_mem(ds_desc->addr, &ds, ds_desc->len)) {
 				log_warnx("wr vioblk: can't write device "
-				    "status data @ 0x%llx", ds_desc->addr);
+				    "status data @ 0x%" PRIx64, ds_desc->addr);
 				dump_descriptor_chain(desc, cmd_desc_idx);
 				goto out;
 			}
@@ -673,7 +673,7 @@ vioblk_notifyq(struct vioblk_dev *dev)
 			if (write_mem(ds_desc->addr, &ds, ds_desc->len)) {
 				log_warnx("fl vioblk: "
 				    "can't write device status "
-				    "data @ 0x%llx", ds_desc->addr);
+				    "data @ 0x%" PRIx64, ds_desc->addr);
 				dump_descriptor_chain(desc, cmd_desc_idx);
 				goto out;
 			}
@@ -702,7 +702,7 @@ vioblk_notifyq(struct vioblk_dev *dev)
 			ds = VIRTIO_BLK_S_UNSUPP;
 			if (write_mem(ds_desc->addr, &ds, ds_desc->len)) {
 				log_warnx("%s: get id : can't write device "
-				    "status data @ 0x%llx", __func__,
+				    "status data @ 0x%" PRIx64, __func__,
 				    ds_desc->addr);
 				dump_descriptor_chain(desc, cmd_desc_idx);
 				goto out;
@@ -1118,7 +1118,7 @@ vionet_enq_rx(struct vionet_dev *dev, char *pkt, ssize_t sz, int *spc)
 	}
 
 	if (read_mem(q_gpa, vr, vr_sz)) {
-		log_warnx("rx enq: error reading gpa 0x%llx", q_gpa);
+		log_warnx("rx enq: error reading gpa 0x%" PRIx64, q_gpa);
 		goto out;
 	}
 
@@ -1154,7 +1154,7 @@ vionet_enq_rx(struct vionet_dev *dev, char *pkt, ssize_t sz, int *spc)
 	/* Write out virtio header */
 	if (write_mem(hdr_desc->addr, &hdr, sizeof(struct virtio_net_hdr))) {
 		log_warnx("vionet: rx enq header write_mem error @ "
-		    "0x%llx", hdr_desc->addr);
+		    "0x%" PRIx64, hdr_desc->addr);
 		goto out;
 	}
 
@@ -1169,7 +1169,7 @@ vionet_enq_rx(struct vionet_dev *dev, char *pkt, ssize_t sz, int *spc)
 		if (write_mem(hdr_desc->addr + sizeof(struct virtio_net_hdr),
 		    pkt, sz)) {
 			log_warnx("vionet: rx enq packet write_mem error @ "
-			    "0x%llx", pkt_desc->addr);
+			    "0x%" PRIx64, pkt_desc->addr);
 			goto out;
 		}
 	} else {
@@ -1185,7 +1185,7 @@ vionet_enq_rx(struct vionet_dev *dev, char *pkt, ssize_t sz, int *spc)
 			/* Write packet to descriptor ring */
 			if (write_mem(pkt_desc->addr, pkt, sz)) {
 				log_warnx("vionet: rx enq packet write_mem "
-				    "error @ 0x%llx", pkt_desc->addr);
+				    "error @ 0x%" PRIx64, pkt_desc->addr);
 				goto out;
 			}
 		} else {
@@ -1350,7 +1350,7 @@ vionet_notify_rx(struct vionet_dev *dev)
 	}
 
 	if (read_mem(q_gpa, vr, vr_sz)) {
-		log_warnx("error reading gpa 0x%llx", q_gpa);
+		log_warnx("error reading gpa 0x%" PRIx64, q_gpa);
 		free(vr);
 		return;
 	}
@@ -1429,7 +1429,7 @@ vionet_notify_tx(struct vionet_dev *dev)
 	}
 
 	if (read_mem(q_gpa, vr, vr_sz)) {
-		log_warnx("error reading gpa 0x%llx", q_gpa);
+		log_warnx("error reading gpa 0x%" PRIx64, q_gpa);
 		goto out;
 	}
 
@@ -1490,7 +1490,7 @@ vionet_notify_tx(struct vionet_dev *dev)
 			if (read_mem(pkt_desc->addr, pkt + ofs,
 			    pkt_desc->len)) {
 				log_warnx("vionet: packet read_mem error "
-				    "@ 0x%llx", pkt_desc->addr);
+				    "@ 0x%" PRIx64, pkt_desc->addr);
 				goto out;
 			}
 
@@ -1510,7 +1510,7 @@ vionet_notify_tx(struct vionet_dev *dev)
 		if (read_mem(pkt_desc->addr, pkt + ofs,
 		    pkt_desc->len)) {
 			log_warnx("vionet: packet read_mem error @ "
-			    "0x%llx", pkt_desc->addr);
+			    "0x%" PRIx64, pkt_desc->addr);
 			goto out;
 		}
 

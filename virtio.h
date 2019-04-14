@@ -25,7 +25,9 @@
 #define VIRTQUEUE_ALIGN(n)	(((n)+(VIRTIO_PAGE_SIZE-1))&    \
 				    ~(VIRTIO_PAGE_SIZE-1))
 #define ALIGNSZ(sz, align)	((sz + align - 1) & ~(align - 1))
+#ifndef MIN
 #define MIN(a,b)		(((a)<(b))?(a):(b))
+#endif
 
 /* Queue sizes must be power of two */
 #define VIORND_QUEUE_SIZE	64
