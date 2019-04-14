@@ -71,14 +71,14 @@ vmboot_bootcmd(char *line, struct vmboot_params *bp)
 		if (ac < 3)
 			return (-1);
 		if (strcmp("device", args[1]) == 0) {
-			if ((size_t)strnvis(bp->vbp_device, args[2],
+			if ((size_t)strnvis_openbsd(bp->vbp_device, args[2],
 			    sizeof(bp->vbp_device), VIS_SAFE) >=
 			    sizeof(bp->vbp_device)) {
 				log_warnx("invalid device name");
 				return (-1);
 			}
 		} else if (strcmp("image", args[1]) == 0) {
-			if ((size_t)strnvis(bp->vbp_image, args[2],
+			if ((size_t)strnvis_openbsd(bp->vbp_image, args[2],
 			    sizeof(bp->vbp_image), VIS_SAFE) >=
 			    sizeof(bp->vbp_image)) {
 				log_warnx("invalid image name");
@@ -109,7 +109,7 @@ vmboot_bootargs(int ac, char **av, struct vmboot_params *bp)
 				log_warnx("invalid file syntax");
 				return (-1);
 			}
-			if ((size_t)strnvis(bp->vbp_device, av[1],
+			if ((size_t)strnvis_openbsd(bp->vbp_device, av[1],
 			    sizeof(bp->vbp_device), VIS_SAFE) >=
 			    sizeof(bp->vbp_device)) {
 				log_warnx("invalid device name");
@@ -118,7 +118,7 @@ vmboot_bootargs(int ac, char **av, struct vmboot_params *bp)
 		} else {
 			p = av[1];
 		}
-		if ((size_t)strnvis(bp->vbp_image, p,
+		if ((size_t)strnvis_openbsd(bp->vbp_image, p,
 		    sizeof(bp->vbp_image), VIS_SAFE) >= sizeof(bp->vbp_image)) {
 			log_warnx("invalid image name");
 			return (-1);

@@ -36,4 +36,8 @@ static inline int pledge(const char *a, const char *b){return 0;}
 #define		TIOCUCNTL_CBRK (TIOCCBRK & 0xff)/* clear break bit, usr ctnl */
 #define		TIOCUCNTL_SBRK (TIOCSBRK & 0xff)/* set break bit, usr ctnl */
 
+typedef	int32_t		daddr32_t;
+
+#define strnvis_openbsd(a,b,c,d) strnvis(a,c,b,d)
+
 #endif

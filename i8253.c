@@ -18,11 +18,11 @@
 #include <sys/time.h>
 #include <sys/types.h>
 
-#include <dev/ic/i8253reg.h>
-
 #if defined(__NetBSD__)
+#include "compat/i8253reg.h"
 #include "compat/vmmvar.h" 
 #else
+#include <dev/ic/i8253reg.h>
 #include <machine/vmmvar.h>
 #endif
 
