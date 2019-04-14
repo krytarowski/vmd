@@ -17,6 +17,8 @@ CFLAGS+=	-Wsign-compare
 LDADD+=		-lutil -lpthread -levent
 DPADD+=		${LIBUTIL} ${LIBPTHREAD} ${LIBEVENT}
 
+CPPFLAGS+=	-D_KERNTYPES
+
 YFLAGS=
 
 .else

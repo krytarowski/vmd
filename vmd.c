@@ -42,7 +42,11 @@
 #include <grp.h>
 
 #include <machine/specialreg.h>
+#if defined(__NetBSD__)
+#include "compat/vmmvar.h"
+#else
 #include <machine/vmmvar.h>
+#endif
 
 #include "proc.h"
 #include "atomicio.h"
