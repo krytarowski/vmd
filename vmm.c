@@ -27,10 +27,11 @@
 
 #if defined(__NetBSD__)
 #include "compat/i8253reg.h"
+#include "compat/isareg.h"
 #else
 #include <dev/ic/i8253reg.h>
-#endif
 #include <dev/isa/isareg.h>
+#endif
 #include <dev/pci/pcireg.h>
 
 #include <machine/param.h>
