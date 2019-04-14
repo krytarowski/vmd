@@ -20,7 +20,11 @@
 #include <sys/queue.h>
 #include <sys/uio.h>
 
+#if defined(__NetBSD__)
+#include "compat/imsg.h"
+#else
 #include <imsg.h>
+#endif
 #include <event.h>
 
 #ifndef _PROC_H

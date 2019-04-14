@@ -19,6 +19,9 @@ DPADD+=		${LIBUTIL} ${LIBPTHREAD} ${LIBEVENT}
 
 CPPFLAGS+=	-D_KERNTYPES
 
+.PATH:		${.CURDIR}/compat/
+SRCS+=		imsg.c
+
 YFLAGS=
 
 .else
