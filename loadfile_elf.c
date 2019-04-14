@@ -520,7 +520,7 @@ mread(FILE *fp, paddr_t addr, size_t sz)
 	osz = sz;
 	if ((addr & PAGE_MASK) != 0) {
 		memset(buf, 0, sizeof(buf));
-		if (sz > PAGE_SIZE)
+		if (sz > (size_t)PAGE_SIZE)
 			ct = PAGE_SIZE - (addr & PAGE_MASK);
 		else
 			ct = sz;
@@ -870,6 +870,10 @@ elf64_exec(FILE *fp, Elf64_Ehdr *elf, u_long *marks, int flags)
 	marks[MARK_SYM] = LOADADDR(elfp);
 	marks[MARK_END] = LOADADDR(maxp);
 
+#if defined(__NetBSD__)
+	(void)first;
+#endif
+
 	return 0;
 }
 
@@ -1090,6 +1094,10 @@ elf32_exec(FILE *fp, Elf32_Ehdr *elf, u_long *marks, int flags)
 	marks[MARK_NSYM] = 1;	/* XXX: Kernel needs >= 0 */
 	marks[MARK_SYM] = LOADADDR(elfp);
 	marks[MARK_END] = LOADADDR(maxp);
+
+#if defined(__NetBSD__)
+	(void)first;
+#endif
 
 	return 0;
 }

@@ -9,5 +9,10 @@ static inline int pledge(const char *a, const char *b){return 0;}
 
 #define	PCI_CONFIG_SPACE_SIZE		0x100
 #define PAGE_SIZE getpagesize()
+#define	PAGE_MASK	(PAGE_SIZE - 1)
+
+
+#define PT_OPENBSD_RANDOMIZE	0x65a3dbe6	/* fill with random data */
+#define ELF_CTF		".SUNW_ctf"	/* CTF data */
 
 #endif
