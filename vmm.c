@@ -16,6 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#include "compat/misc.h"
 #include <sys/param.h>	/* nitems */
 #include <sys/ioctl.h>
 #include <sys/queue.h>
