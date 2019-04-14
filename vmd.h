@@ -20,7 +20,11 @@
 #include <sys/queue.h>
 #include <sys/socket.h>
 
+#if defined(__NetBSD__)
+#include "compat/vmmvar.h"
+#else
 #include <machine/vmmvar.h>
+#endif
 
 #include <net/if.h>
 #include <netinet/in.h>
