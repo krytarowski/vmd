@@ -111,7 +111,7 @@ rtc_fire1(int fd, short type, void *arg)
 
 	rtc_updateregs();
 	if (rtc.now - old > 5) {
-		log_debug("%s: RTC clock drift (%llds), requesting guest "
+		log_debug("%s: RTC clock drift (%" PRId64 "s), requesting guest "
 		    "resync", __func__, (rtc.now - old));
 		vmmci_ctl(VMMCI_SYNCRTC);
 	}
