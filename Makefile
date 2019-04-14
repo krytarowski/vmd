@@ -18,6 +18,7 @@ LDADD+=		-lutil -lpthread -levent
 DPADD+=		${LIBUTIL} ${LIBPTHREAD} ${LIBEVENT}
 
 CPPFLAGS+=	-D_KERNTYPES
+CPPFLAGS+=	-D_OPENBSD_SOURCE
 
 .PATH:		${.CURDIR}/compat/
 SRCS+=		imsg.c
