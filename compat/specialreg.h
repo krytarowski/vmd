@@ -134,7 +134,9 @@
 #define	CPUID_CMOV	0x00008000	/* has CMOVcc instruction */
 #define	CPUID_PAT	0x00010000	/* has page attribute table */
 #define	CPUID_PSE36	0x00020000	/* has 36bit page size extension */
+#endif
 #define	CPUID_PSN	0x00040000	/* has processor serial number */
+#if 0
 #define	CPUID_CFLUSH	0x00080000	/* CFLUSH insn supported */
 #define	CPUID_B20	0x00100000	/* reserved */
 #define	CPUID_DS	0x00200000	/* Debug Store */
@@ -148,6 +150,7 @@
 #define	CPUID_TM	0x20000000	/* thermal monitor (TCC) */
 #define	CPUID_B30	0x40000000	/* reserved */
 #define	CPUID_PBE	0x80000000	/* Pending Break Enabled restarts clock */
+#endif
 
 #define	CPUIDECX_SSE3	0x00000001	/* streaming SIMD extensions #3 */
 #define	CPUIDECX_PCLMUL	0x00000002	/* Carryless Multiplication */
@@ -320,7 +323,6 @@
 #define	CPUID2FAMILY(cpuid)	(((cpuid) >> 8) & 15)
 #define	CPUID2MODEL(cpuid)	(((cpuid) >> 4) & 15)
 #define	CPUID2STEPPING(cpuid)	((cpuid) & 15)
-#endif
 
 #define	CPUID(code, eax, ebx, ecx, edx)                         \
 	__asm volatile("cpuid"                                  \
