@@ -97,7 +97,11 @@
 #include <errno.h>
 #include <stddef.h>
 
+#if defined(__NetBSD__)
+#include "compat/vmmvar.h" 
+#else
 #include <machine/vmmvar.h>
+#endif
 #include <machine/biosvar.h>
 #include <machine/segments.h>
 #include <machine/specialreg.h>

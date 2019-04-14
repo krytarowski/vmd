@@ -17,7 +17,11 @@
 
 #include <sys/types.h>
 
+#if defined(__NetBSD__)
+#include "compat/vmmvar.h" 
+#else
 #include <machine/vmmvar.h>
+#endif
 
 #define MASTER 0
 #define SLAVE 1

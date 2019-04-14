@@ -19,7 +19,11 @@
 #include <sys/param.h>	/* PAGE_SIZE */
 #include <sys/socket.h>
 
+#if defined(__NetBSD__)
+#include "compat/vmmvar.h" 
+#else
 #include <machine/vmmvar.h>
+#endif
 #include <dev/pci/pcireg.h>
 #include <dev/pci/pcidevs.h>
 #include <dev/pv/virtioreg.h>

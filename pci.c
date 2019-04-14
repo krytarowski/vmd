@@ -21,7 +21,12 @@
 #include <dev/pci/pcireg.h>
 #include <dev/pci/pcidevs.h>
 #include <dev/pv/virtioreg.h>
+
+#if defined(__NetBSD__)
+#include "compat/vmmvar.h" 
+#else
 #include <machine/vmmvar.h>
+#endif
 
 #include <string.h>
 #include <unistd.h>

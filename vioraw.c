@@ -18,7 +18,11 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#if defined(__NetBSD__)
+#include "compat/vmmvar.h" 
+#else
 #include <machine/vmmvar.h>
+#endif
 #include <dev/pci/pcireg.h>
 
 #include <stdlib.h>

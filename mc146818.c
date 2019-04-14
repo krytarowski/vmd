@@ -20,7 +20,11 @@
 #include <dev/ic/mc146818reg.h>
 #include <dev/isa/isareg.h>
 
+#if defined(__NetBSD__)
+#include "compat/vmmvar.h" 
+#else
 #include <machine/vmmvar.h>
+#endif
 
 #include <event.h>
 #include <stddef.h>

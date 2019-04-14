@@ -16,7 +16,11 @@
  */
 #include <sys/types.h>
 #include <sys/uio.h>
+#if defined(__NetBSD__)
+#include "compat/vmmvar.h"
+#else
 #include <machine/vmmvar.h>
+#endif
 
 #include <stdlib.h>
 #include <string.h>

@@ -20,7 +20,11 @@
 
 #include <dev/ic/i8253reg.h>
 
+#if defined(__NetBSD__)
+#include "compat/vmmvar.h" 
+#else
 #include <machine/vmmvar.h>
+#endif
 
 #include <event.h>
 #include <string.h>

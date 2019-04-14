@@ -32,7 +32,11 @@
 #include <machine/param.h>
 #include <machine/psl.h>
 #include <machine/specialreg.h>
+#if defined(__NetBSD__)
+#include "compat/vmmvar.h" 
+#else
 #include <machine/vmmvar.h>
+#endif
 
 #include <net/if.h>
 

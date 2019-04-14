@@ -20,7 +20,11 @@
 
 #include <dev/ic/comreg.h>
 
+#if defined(__NetBSD__)
+#include "compat/vmmvar.h" 
+#else
 #include <machine/vmmvar.h>
+#endif
 
 #include <errno.h>
 #include <event.h>
