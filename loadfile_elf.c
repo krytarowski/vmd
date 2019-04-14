@@ -422,7 +422,7 @@ push_bootargs(bios_memmap_t *memmap, size_t n, bios_bootmac_t *bootmac)
 	i += consdev_sz / sizeof(int);
 
 	if (bootmac) {
-		bootmac_sz = 3 * sizeof(int) + (sizeof(bios_bootmac_t) + 3) & ~3;
+		bootmac_sz = (3 * sizeof(int) + (sizeof(bios_bootmac_t) + 3)) & ~3;
 		ba[i] = 0x7;   /* bootmac */
 		ba[i + 1] = bootmac_sz;
 		ba[i + 2] = bootmac_sz;
