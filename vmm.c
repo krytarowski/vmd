@@ -328,6 +328,9 @@ vmm_dispatch_parent(int fd, struct privsep_proc *p, struct imsg *imsg)
 		memcpy(&vmc, imsg->data, sizeof(vmc));
 		ret = vm_register(ps, &vmc, &vm,
 		    imsg->hdr.peerid, vmc.vmc_owner.uid);
+#if defined(__NetBSD__)
+		(void)ret;
+#endif
 		vm->vm_tty = imsg->fd;
 		vm->vm_received = 1;
 		break;
