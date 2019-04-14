@@ -23,6 +23,9 @@
 #include <sys/param.h>	/* nitems */
 #include <sys/queue.h>
 #include <sys/stat.h>
+#if defined(__NetBSD__)
+#inckude "compat/socket.h"
+#endif
 #include <sys/socket.h>
 #include <sys/un.h>
 #include <sys/tree.h>
