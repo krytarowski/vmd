@@ -149,8 +149,8 @@
 #define	CPUID_HTT	0x10000000	/* Hyper-Threading Technology */
 #define	CPUID_TM	0x20000000	/* thermal monitor (TCC) */
 #define	CPUID_B30	0x40000000	/* reserved */
-#define	CPUID_PBE	0x80000000	/* Pending Break Enabled restarts clock */
 #endif
+#define	CPUID_PBE	0x80000000	/* Pending Break Enabled restarts clock */
 
 #define	CPUIDECX_SSE3	0x00000001	/* streaming SIMD extensions #3 */
 #define	CPUIDECX_PCLMUL	0x00000002	/* Carryless Multiplication */
