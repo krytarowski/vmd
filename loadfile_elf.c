@@ -81,6 +81,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#if defined(__NetBSD__)
+#include "compat/misc.h"
+#endif
 #include <sys/param.h>	/* PAGE_SIZE PAGE_MASK roundup */
 #include <sys/ioctl.h>
 #include <sys/reboot.h>
@@ -99,7 +102,7 @@
 
 #if defined(__NetBSD__)
 #include "compat/vmmvar.h"
-#include "machine/biosvar.h"
+#include "compat/biosvar.h"
 #else
 #include <machine/vmmvar.h>
 #include <machine/biosvar.h>
