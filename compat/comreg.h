@@ -56,7 +56,11 @@
  *	@(#)comreg.h	7.2 (Berkeley) 5/9/91
  */
 
+#if defined(__NetBSD__)
+#include "compat/ns16550reg.h"
+#else
 #include <dev/ic/ns16550reg.h>
+#endif
 
 #ifndef COM_FREQ		/* allow to be set externally */
 #define	COM_FREQ	1843200	/* 16-bit baud rate divisor */
