@@ -18,7 +18,7 @@
 #include <sys/types.h>
 
 #if defined(__NetBSD__)
-#include <dev/ic/mc146818reg.h>
+#include "compat/mc146818reg.h"
 #include "compat/isareg.h"
 #include "compat/vmmvar.h" 
 #else
