@@ -41,6 +41,9 @@
 #include <pwd.h>
 #include <signal.h>
 #include <syslog.h>
+#if defined(__NetBSD__)
+#include "compat/unistd.h"
+#endif
 #include <unistd.h>
 #include <util.h>
 #include <ctype.h>
