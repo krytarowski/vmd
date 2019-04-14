@@ -1955,7 +1955,7 @@ virtio_init(struct vmd_vm *vm, int child_cdrom,
 			vioblk[i].pci_id = id;
 			vioblk[i].vm_id = vcp->vcp_id;
 			vioblk[i].irq = pci_get_dev_irq(id);
-			if (virtio_init_disk(&vioblk[i].file, &vioblk[i].sz,
+			if (virtio_init_disk(&vioblk[i].file, (off_t *)&vioblk[i].sz,
 			    child_disks[i], vmc->vmc_diskbases[i],
 			    vmc->vmc_disktypes[i]) == -1) {
 				log_warnx("%s: unable to determine disk format",
@@ -2001,7 +2001,7 @@ virtio_init(struct vmd_vm *vm, int child_cdrom,
 			    + sizeof(uint16_t) * (2 + VIOSCSI_QUEUE_SIZE));
 			vioscsi->vq[i].last_avail = 0;
 		}
-		if (virtio_init_disk(&vioscsi->file, &vioscsi->sz,
+		if (virtio_init_disk(&vioscsi->file, (off_t *)&vioscsi->sz,
 		    &child_cdrom, 1, VMDF_RAW) == -1) {
 			log_warnx("%s: unable to determine iso format",
 			    __func__);
@@ -2186,7 +2186,7 @@ vioblk_restore(int fd, struct vmop_create_params *vmc,
 			    "device", __progname);
 			return (-1);
 		}
-		if (virtio_init_disk(&vioblk[i].file, &vioblk[i].sz,
+		if (virtio_init_disk(&vioblk[i].file, (off_t *)&vioblk[i].sz,
 		    child_disks[i], vmc->vmc_diskbases[i],
 		    vmc->vmc_disktypes[i]) == -1)  {
 			log_warnx("%s: unable to determine disk format",
@@ -2225,7 +2225,7 @@ vioscsi_restore(int fd, struct vm_create_params *vcp, int child_cdrom)
 		return (-1);
 	}
 
-	if (virtio_init_disk(&vioscsi->file, &vioscsi->sz, &child_cdrom, 1,
+	if (virtio_init_disk(&vioscsi->file, (off_t *)&vioscsi->sz, &child_cdrom, 1,
 	    VMDF_RAW) == -1) {
 		log_warnx("%s: unable to determine iso format", __func__);
 		return (-1);
