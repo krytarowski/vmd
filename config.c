@@ -269,8 +269,8 @@ config_setvm(struct privsep *ps, struct vmd_vm *vm, uint32_t peerid, uid_t uid)
 		}
 
 		log_debug("%s: vm %u restarted after %lld.%ld seconds,"
-		    " limit %d/%d", __func__, vcp->vcp_id, since_last.tv_sec,
-		    since_last.tv_usec, vm->vm_start_limit,
+		    " limit %d/%d", __func__, vcp->vcp_id, (long long int)since_last.tv_sec,
+		    (long int)since_last.tv_usec, vm->vm_start_limit,
 		    VM_START_RATE_LIMIT);
 
 		if (vm->vm_start_limit >= VM_START_RATE_LIMIT) {
