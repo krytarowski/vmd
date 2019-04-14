@@ -24,6 +24,9 @@
 #include <sys/wait.h>
 #include <sys/cdefs.h>
 #include <sys/stat.h>
+#if defined(__NetBSD__)
+#include "compat/tty.h"
+#endif
 #include <sys/tty.h>
 #include <sys/ttycom.h>
 #include <sys/ioctl.h>
