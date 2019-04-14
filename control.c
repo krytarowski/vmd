@@ -18,15 +18,11 @@
  */
 
 #if defined(__NetBSD__)
-#include "compat/param.h"
+#include "compat/misc.h"
 #endif
 #include <sys/param.h>	/* nitems */
 #include <sys/queue.h>
 #include <sys/stat.h>
-#if defined(__NetBSD__)
-#include <sys/un.h>
-#include "compat/socket.h"
-#endif
 #include <sys/socket.h>
 #include <sys/un.h>
 #include <sys/tree.h>
@@ -38,9 +34,6 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
-#if defined(__NetBSD__)
-#include "compat/unistd.h"
-#endif
 #include <unistd.h>
 #include <signal.h>
 

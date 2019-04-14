@@ -17,16 +17,13 @@
  */
 
 #if defined(__NetBSD__)
-#include "compat/param.h"
+#include "compat/misc.h"
 #endif
 #include <sys/param.h>	/* nitems */
 #include <sys/queue.h>
 #include <sys/wait.h>
 #include <sys/cdefs.h>
 #include <sys/stat.h>
-#if defined(__NetBSD__)
-#include "compat/tty.h"
-#endif
 #include <sys/tty.h>
 #include <sys/ttycom.h>
 #include <sys/ioctl.h>
@@ -41,9 +38,6 @@
 #include <pwd.h>
 #include <signal.h>
 #include <syslog.h>
-#if defined(__NetBSD__)
-#include "compat/unistd.h"
-#endif
 #include <unistd.h>
 #if defined(__NetBSD__)
 #include "compat/util.h"

@@ -23,4 +23,7 @@ static inline int pledge(const char *a, const char *b){return 0;}
 
 #define PCI_EXROMADDR_0	0x30
 
+#define PTMGET /* OpenBSD name */ TIOCPTMGET /* NetBSD name */
+#define PATH_PTMDEV "/dev/ptm.h"
+
 #endif
