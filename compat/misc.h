@@ -26,4 +26,11 @@ static inline int pledge(const char *a, const char *b){return 0;}
 #define PTMGET /* OpenBSD name */ TIOCPTMGET /* NetBSD name */
 #define PATH_PTMDEV "/dev/ptm.h"
 
+#define	PCI_PRODUCT_QUMRANET_VIO_RNG	0x1005		/* Virtio RNG */
+#define	PCI_PRODUCT_QUMRANET_VIO_NET	0x1000		/* Virtio Network */
+#define	PCI_PRODUCT_QUMRANET_VIO_BLOCK	0x1001		/* Virtio Storage */
+#define	PCI_PRODUCT_QUMRANET_VIO_MEM	0x1002		/* Virtio Memory Balloon */
+#define	PCI_PRODUCT_QUMRANET_VIO_CONS	0x1003		/* Virtio Console */
+#define	PCI_PRODUCT_QUMRANET_VIO_SCSI	0x1004		/* Virtio SCSI */
+
 #endif
