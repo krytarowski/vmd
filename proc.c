@@ -17,6 +17,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#include "compat/misc.h"
 #include <sys/types.h>
 #include <sys/queue.h>
 #include <sys/socket.h>
@@ -32,7 +33,11 @@
 #include <paths.h>
 #include <pwd.h>
 #include <event.h>
+#if defined(__NetBSD__)
+#include "compat/imsg.h"
+#else
 #include <imsg.h>
+#endif
 
 #include "proc.h"
 
