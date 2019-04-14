@@ -15,4 +15,12 @@ static inline int pledge(const char *a, const char *b){return 0;}
 #define PT_OPENBSD_RANDOMIZE	0x65a3dbe6	/* fill with random data */
 #define ELF_CTF		".SUNW_ctf"	/* CTF data */
 
+#define	PCI_VENDOR_OPENBSD	0x0b5d		/* OpenBSD */
+
+/* OpenBSD VMM products */
+#define	PCI_PRODUCT_OPENBSD_PCHB	0x0666		/* VMM Host */
+#define	PCI_PRODUCT_OPENBSD_CONTROL	0x0777		/* VMM Control */
+
+#define PCI_EXROMADDR_0	0x30
+
 #endif
