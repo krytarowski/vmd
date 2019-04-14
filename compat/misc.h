@@ -7,4 +7,6 @@
 
 static inline int pledge(const char *a, const char *b){return 0;}
 
+#define	PCI_CONFIG_SPACE_SIZE		0x100
+
 #endif

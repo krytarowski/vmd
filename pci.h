@@ -16,6 +16,10 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#if defined(__NetBSD__)
+#include "compat/misc.h"
+#endif
+
 #define PCI_MODE1_ENABLE	0x80000000UL
 #define PCI_MODE1_ADDRESS_REG	0x0cf8
 #define PCI_MODE1_DATA_REG	0x0cfc
