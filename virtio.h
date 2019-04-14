@@ -16,7 +16,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#if defined(__NetBSD__)
+#include "compat/virtioreg.h"
+#else
 #include <dev/pv/virtioreg.h>
+#endif
 
 #define VIRTQUEUE_ALIGN(n)	(((n)+(VIRTIO_PAGE_SIZE-1))&    \
 				    ~(VIRTIO_PAGE_SIZE-1))
