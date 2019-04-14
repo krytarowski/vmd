@@ -26,7 +26,11 @@
 #endif
 #include <dev/pci/pcireg.h>
 #include <dev/pci/pcidevs.h>
+#if defined(__NetBSD__)
+#include "compat/virtioreg.h"
+#else
 #include <dev/pv/virtioreg.h>
+#endif
 #include <dev/pci/virtio_pcireg.h>
 #include <dev/pv/vioblkreg.h>
 #include <dev/pv/vioscsireg.h>
