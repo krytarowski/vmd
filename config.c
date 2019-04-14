@@ -34,7 +34,11 @@
 #include <fcntl.h>
 #include <util.h>
 #include <errno.h>
+#if defined(__NetBSD__)
+#include "compat/imsg.h"
+#else
 #include <imsg.h>
+#endif
 
 #include "proc.h"
 #include "vmd.h"
