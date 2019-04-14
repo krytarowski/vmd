@@ -78,4 +78,8 @@ int loadfile_elf(FILE *, struct vm_create_params *,
 
 size_t mread(FILE *, paddr_t, size_t);
 
+#if defined(__NetBSD__)
+#include "compat/loadfile_machdep.h"
+#else
 #include <machine/loadfile_machdep.h>
+#endif
