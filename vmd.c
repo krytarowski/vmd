@@ -1910,7 +1910,7 @@ user_inc(struct vm_create_params *vcp, struct vmd_user *usr, int inc)
 
 	if (log_getverbose() > 1) {
 		(void)fmt_scaled(usr->usr_maxmem * 1024 * 1024, mem);
-		log_debug("%s: %c uid %d ref %d cpu %llu mem %s ifs %llu",
+		log_debug("%s: %c uid %d ref %d cpu %" PRIu64 " mem %s ifs %" PRIu64,
 		    __func__, inc == 1 ? '+' : '-',
 		    usr->usr_id.uid, usr->usr_refcnt,
 		    usr->usr_maxcpu, mem, usr->usr_maxifs);
@@ -1953,7 +1953,7 @@ get_string(uint8_t *ptr, size_t len)
 		if (!isprint(ptr[i]))
 			break;
 
-	return strndup(ptr, i);
+	return strndup((const char *)ptr, i);
 }
 
 uint32_t
