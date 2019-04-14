@@ -24,7 +24,7 @@
 #include <sys/queue.h>
 #include <sys/stat.h>
 #if defined(__NetBSD__)
-#inckude "compat/socket.h"
+#include "compat/socket.h"
 #endif
 #include <sys/socket.h>
 #include <sys/un.h>
