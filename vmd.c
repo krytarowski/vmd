@@ -45,7 +45,11 @@
 #include "compat/unistd.h"
 #endif
 #include <unistd.h>
+#if defined(__NetBSD__)
+#include "compat/util.h"
+#else
 #include <util.h>
+#endif
 #include <ctype.h>
 #include <pwd.h>
 #include <grp.h>
