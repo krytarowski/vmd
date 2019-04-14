@@ -292,7 +292,7 @@ pci_handle_io(struct vm_run_params *vrp)
 			    __progname);
 		}
 	} else {
-		log_warnx("%s: no pci i/o function for reg 0x%llx",
+		log_warnx("%s: no pci i/o function for reg 0x%" PRIx64,
 		    __progname, (uint64_t)reg);
 		/* Reads from undefined ports return 0xFF */
 		if (dir == VEI_DIR_IN)
@@ -320,7 +320,7 @@ pci_handle_data_reg(struct vm_run_params *vrp)
 		if (vei->vei.vei_dir == VEI_DIR_IN)
 			set_return_data(vei, 0xFFFFFFFF);
 		log_warnx("invalid address register during pci read: "
-		    "0x%llx", (uint64_t)pci.pci_addr_reg);
+		    "0x%" PRIx64, (uint64_t)pci.pci_addr_reg);
 		return;
 	}
 
