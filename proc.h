@@ -18,6 +18,7 @@
 
 #if defined(__NetBSD__)
 #include <sys/types.h>
+#include "compat/socket.h"
 #include <sys/socket.h>
 #endif
 #include <sys/socket.h>

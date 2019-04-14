@@ -29,7 +29,9 @@
 #include <netinet/if_ether.h>
 #include <netinet6/in6_var.h>
 #include <netinet6/nd6.h>
+#if !defined(__NetBSD__)
 #include <net/if_bridge.h>
+#endif
 
 #include <arpa/inet.h>
 
