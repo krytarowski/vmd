@@ -17,12 +17,13 @@
 
 #include <sys/types.h>
 
-#include <dev/ic/mc146818reg.h>
-#include <dev/isa/isareg.h>
-
 #if defined(__NetBSD__)
+#include <dev/ic/mc146818reg.h>
+#include "compat/isareg.h"
 #include "compat/vmmvar.h" 
 #else
+#include <dev/ic/mc146818reg.h>
+#include <dev/isa/isareg.h>
 #include <machine/vmmvar.h>
 #endif
 
