@@ -34,6 +34,9 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
+#if defined(__NetBSD__)
+#include "compat/unistd.h"
+#endif
 #include <unistd.h>
 #include <signal.h>
 
