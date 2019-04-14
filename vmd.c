@@ -41,7 +41,11 @@
 #include <pwd.h>
 #include <grp.h>
 
+#if defined(__NetBSD__)
+#include "compat/specialreg.h"
+#endif
 #include <machine/specialreg.h>
+
 #if defined(__NetBSD__)
 #include "compat/vmmvar.h"
 #else
