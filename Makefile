@@ -21,7 +21,7 @@ CPPFLAGS+=	-D_KERNTYPES
 CPPFLAGS+=	-D_OPENBSD_SOURCE
 
 .PATH:		${.CURDIR}/compat/
-SRCS+=		imsg.c
+SRCS+=		imsg.c pledge.c
 
 YFLAGS=
 
