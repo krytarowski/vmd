@@ -25,7 +25,11 @@
 #include <sys/time.h>
 #include <sys/mman.h>
 
+#if defined(__NetBSD__)
+#include "compat/i8253reg.h"
+#else
 #include <dev/ic/i8253reg.h>
+#endif
 #include <dev/isa/isareg.h>
 #include <dev/pci/pcireg.h>
 
