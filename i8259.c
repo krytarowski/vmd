@@ -19,11 +19,11 @@
 
 #include <sys/types.h>
 
-#include <dev/isa/isareg.h>
-
 #if defined(__NetBSD__)
+#include "compat/isareg.h"
 #include "compat/vmmvar.h" 
 #else
+#include <dev/isa/isareg.h>
 #include <machine/vmmvar.h>
 #endif
 
