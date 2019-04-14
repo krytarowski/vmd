@@ -40,4 +40,6 @@ typedef	int32_t		daddr32_t;
 
 #define strnvis_openbsd(a,b,c,d) strnvis(a,c,b,d)
 
+#define RB_CONFIG RB_USERCONF
+
 #endif
