@@ -18,11 +18,11 @@
 #include <sys/types.h>
 #include <sys/ttycom.h>
 
-#include <dev/ic/comreg.h>
-
 #if defined(__NetBSD__)
+#include "compat/comreg.h"
 #include "compat/vmmvar.h" 
 #else
+#include <dev/ic/comreg.h>
 #include <machine/vmmvar.h>
 #endif
 
