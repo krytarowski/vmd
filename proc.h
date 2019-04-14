@@ -16,6 +16,10 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#if defined(__NetBSD__)
+#include <sys/types.h>
+#include <sys/un.h>
+#endif
 #include <sys/socket.h>
 #include <sys/queue.h>
 #include <sys/uio.h>
@@ -79,7 +83,11 @@ struct ctl_conn {
 	unsigned int		 waiting;
 #define CTL_CONN_NOTIFY		 0x01
 	struct imsgev		 iev;
+#if defined(__NetBSD__)
+	struct unpcbid		 peercred;
+#else
 	struct sockpeercred	 peercred;
+#endif
 
 };
 TAILQ_HEAD(ctl_connlist, ctl_conn);
