@@ -25,8 +25,13 @@
 #include <sys/time.h>
 #include <sys/mman.h>
 
+#if defined(__NetBSD__)
+#include "compat/i8253reg.h"
+#include "compat/isareg.h"
+#else
 #include <dev/ic/i8253reg.h>
 #include <dev/isa/isareg.h>
+#endif
 #include <dev/pci/pcireg.h>
 
 #include <machine/param.h>
@@ -44,7 +49,11 @@
 #include <errno.h>
 #include <event.h>
 #include <fcntl.h>
+#if defined(__NetBSD__)
+#include "compat/imsg.h"
+#else
 #include <imsg.h>
+#endif
 #include <limits.h>
 #include <poll.h>
 #include <pthread.h>
