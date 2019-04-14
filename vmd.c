@@ -1366,7 +1366,9 @@ vm_instance(struct privsep *ps, struct vmd_vm **vm_parent,
 	struct vm_create_params	*vcpp;
 	struct vmd_vm		*vm = NULL;
 	unsigned int		 i, j;
+#if !defined(__NetBSD__)
 	uint32_t		 id;
+#endif
 
 	/* return without error if the parent is NULL (nothing to inherit) */
 	if ((vmc->vmc_flags & VMOP_CREATE_INSTANCE) == 0 ||
@@ -1384,8 +1386,9 @@ vm_instance(struct privsep *ps, struct vmd_vm **vm_parent,
 		errno = ENAMETOOLONG;
 		return (-1);
 	}
-
+#if !defined(__NetBSD__)
 	id = vcp->vcp_id;
+#endif
 	name = vcp->vcp_name;
 
 	if ((vm = vm_getbyname(vcp->vcp_name)) != NULL ||
