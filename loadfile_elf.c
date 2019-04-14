@@ -98,11 +98,13 @@
 #include <stddef.h>
 
 #if defined(__NetBSD__)
-#include "compat/vmmvar.h" 
+#include "compat/vmmvar.h"
+#include "machine/biosvar.h"
 #else
 #include <machine/vmmvar.h>
-#endif
 #include <machine/biosvar.h>
+#endif
+
 #include <machine/segments.h>
 #include <machine/specialreg.h>
 #include <machine/pte.h>
