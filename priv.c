@@ -16,6 +16,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#if defined(__NetBSD__)
+#include "compat/param.h"
+#endif
 #include <sys/param.h>	/* nitems */
 #include <sys/queue.h>
 #include <sys/stat.h>
@@ -29,7 +32,9 @@
 #include <netinet/if_ether.h>
 #include <netinet6/in6_var.h>
 #include <netinet6/nd6.h>
-#if !defined(__NetBSD__)
+#if defined(__NetBSD__)
+#include <net/if_bridgevar.h>
+#else
 #include <net/if_bridge.h>
 #endif
 
