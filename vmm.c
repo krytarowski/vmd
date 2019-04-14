@@ -48,7 +48,11 @@
 #include <errno.h>
 #include <event.h>
 #include <fcntl.h>
+#if defined(__NetBSD__)
+#include "compat/imsg.h"
+#else
 #include <imsg.h>
+#endif
 #include <limits.h>
 #include <poll.h>
 #include <pthread.h>
