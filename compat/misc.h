@@ -33,4 +33,7 @@ static inline int pledge(const char *a, const char *b){return 0;}
 #define	PCI_PRODUCT_QUMRANET_VIO_CONS	0x1003		/* Virtio Console */
 #define	PCI_PRODUCT_QUMRANET_VIO_SCSI	0x1004		/* Virtio SCSI */
 
+#define		TIOCUCNTL_CBRK (TIOCCBRK & 0xff)/* clear break bit, usr ctnl */
+#define		TIOCUCNTL_SBRK (TIOCSBRK & 0xff)/* set break bit, usr ctnl */
+
 #endif
