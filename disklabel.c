@@ -75,4 +75,3 @@ getdisklabel(char *buf, struct disklabel *lp)
 	}
 	return (msg);
 }
-

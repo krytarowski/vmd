@@ -17,6 +17,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#if defined(__NetBSD__)
+#include "compat/param.h"
+#endif
 #include <sys/param.h>	/* nitems */
 #include <sys/queue.h>
 #include <sys/stat.h>
