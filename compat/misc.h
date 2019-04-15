@@ -138,4 +138,6 @@ typedef u_int32_t	ufsino_t;
 
 int scan_scaled(char *scaled, long long *result);
 
+#define RT_TABLEID_MAX	255 
+
 #endif
