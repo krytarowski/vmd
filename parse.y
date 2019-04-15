@@ -943,12 +943,12 @@ top:
 			lungetc(c);
 			break;
 		}
-		val = symget(buf);
+		val = (u_char *)symget((char *)buf);
 		if (val == NULL) {
 			yyerror("macro '%s' not defined", buf);
 			return (findeol());
 		}
-		p = val + strlen(val) - 1;
+		p = val + strlen((char *)val) - 1;
 		lungetc(DONE_EXPAND);
 		while (p >= val) {
 			lungetc(*p);
@@ -992,7 +992,7 @@ top:
 			}
 			*p++ = c;
 		}
-		yylval.v.string = strdup(buf);
+		yylval.v.string = strdup((char *)buf);
 		if (yylval.v.string == NULL)
 			fatal("yylex: strdup");
 		return (STRING);
@@ -1016,7 +1016,7 @@ top:
 			const char *errstr = NULL;
 
 			*p = '\0';
-			yylval.v.number = strtonum(buf, LLONG_MIN,
+			yylval.v.number = strtonum((char *)buf, LLONG_MIN,
 			    LLONG_MAX, &errstr);
 			if (errstr) {
 				yyerror("\"%s\" invalid number: %s",
