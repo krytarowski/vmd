@@ -17,12 +17,18 @@
  */
 
 #include <sys/types.h>
+
+#if defined(__NetBSD__)
+#include "compat/virtio_pcireg.h"
+#include "compat/vioscsireg.h"
+#else
 #include <dev/pci/virtio_pcireg.h>
 #include <dev/pv/vioscsireg.h>
 #include <scsi/scsi_all.h>
 #include <scsi/scsi_disk.h>
 #include <scsi/scsiconf.h>
 #include <scsi/cd.h>
+#endif
 
 #include <errno.h>
 #include <stdlib.h>
