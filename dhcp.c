@@ -54,14 +54,14 @@ dhcp_request(struct vionet_dev *dev, char *buf, size_t buflen, char **obuf)
 		return (-1);
 
 	memset(&pc, 0, sizeof(pc));
-	if ((offset = decode_hw_header(buf, buflen, 0, &pc, HTYPE_ETHER)) < 0)
+	if ((offset = decode_hw_header((unsigned char *)buf, buflen, 0, &pc, HTYPE_ETHER)) < 0)
 		return (-1);
 
 	if (memcmp(pc.pc_smac, dev->mac, ETHER_ADDR_LEN) != 0 ||
 	    memcmp(pc.pc_dmac, broadcast, ETHER_ADDR_LEN) != 0)
 		return (-1);
 
-	if ((offset = decode_udp_ip_header(buf, buflen, offset, &pc)) < 0)
+	if ((offset = decode_udp_ip_header((unsigned char *)buf, buflen, offset, &pc)) < 0)
 		return (-1);
 
 	if (ntohs(ss2sin(&pc.pc_src)->sin_port) != CLIENT_PORT ||
@@ -238,7 +238,7 @@ dhcp_request(struct vionet_dev *dev, char *buf, size_t buflen, char **obuf)
 	memcpy(respbuf + offset, &resp, resplen);
 	respbuflen = offset + resplen;
 
-	*obuf = respbuf;
+	*obuf = (char *)respbuf;
 	return (respbuflen);
  fail:
 	free(respbuf);
