@@ -63,6 +63,10 @@
  *	Stand-alone file reading package.
  */
 
+#if defined(__NetBSD__)
+#include "compat/misc.h"
+#include <sys/dirent.h>
+#endif
 #include <sys/param.h>	/* DEV_BSIZE MAXBSIZE */
 #include <sys/time.h>
 #include <sys/stat.h>

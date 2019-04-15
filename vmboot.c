@@ -16,6 +16,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#if defined(__NetBSD__)
+#include "compat/misc.h"
+#endif
 #include <sys/param.h>	/* DEV_BSIZE roundup */
 #include <sys/reboot.h>
 #include <sys/time.h>
