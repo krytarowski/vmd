@@ -1050,8 +1050,8 @@ nodigits:
 		} while ((c = lgetc(0)) != EOF && (allowed_in_string(c)));
 		lungetc(c);
 		*p = '\0';
-		if ((token = lookup(buf)) == STRING)
-			if ((yylval.v.string = strdup(buf)) == NULL)
+		if ((token = lookup((char *)buf)) == STRING)
+			if ((yylval.v.string = strdup((char *)buf)) == NULL)
 				fatal("yylex: strdup");
 		return (token);
 	}
