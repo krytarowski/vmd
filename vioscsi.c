@@ -21,6 +21,10 @@
 #if defined(__NetBSD__)
 #include "compat/virtio_pcireg.h"
 #include "compat/vioscsireg.h"
+#include "compat/scsi_all.h"
+#include "compat/scsi_disk.h"
+#include "compat/scsiconf.h"
+#include "compat/cd.h"
 #else
 #include <dev/pci/virtio_pcireg.h>
 #include <dev/pv/vioscsireg.h>
