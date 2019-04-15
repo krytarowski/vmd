@@ -46,7 +46,11 @@
 #include <arpa/inet.h>
 
 #include <net/if.h>
+#if defined(__NetBSD__)
+#include "compat/if_enc.h"
+#else
 #include <net/if_enc.h>
+#endif
 
 #include <netinet/in.h>
 #include <netinet/ip.h>
