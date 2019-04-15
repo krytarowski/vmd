@@ -293,7 +293,7 @@ switch_opts	: disable			{
 		}
 		| RDOMAIN NUMBER		{
 			if ($2 < 0 || $2 > RT_TABLEID_MAX) {
-				yyerror("invalid rdomain: %lld", $2);
+				yyerror("invalid rdomain: %" PRId64, $2);
 				YYERROR;
 			}
 			vsw->sw_flags |= VMIFF_RDOMAIN;
@@ -486,7 +486,7 @@ vm_opts		: disable			{
 				YYERROR;
 			}
 			if ($2 < 0 || $2 > VMM_MAX_NICS_PER_VM) {
-				yyerror("too many interfaces: %lld", $2);
+				yyerror("too many interfaces: %" PRId64, $2);
 				YYERROR;
 			}
 			vcp->vcp_nnics = (size_t)$2;
@@ -499,7 +499,7 @@ vm_opts		: disable			{
 				YYERROR;
 			}
 			if ((res = parse_size(NULL, $2)) == -1) {
-				yyerror("failed to parse size: %lld", $2);
+				yyerror("failed to parse size: %" PRId64, $2);
 				YYERROR;
 			}
 			vcp->vcp_memranges[0].vmr_size = (size_t)res;
@@ -653,7 +653,7 @@ iface_opts	: SWITCH string			{
 		}
 		| RDOMAIN NUMBER		{
 			if ($2 < 0 || $2 > RT_TABLEID_MAX) {
-				yyerror("invalid rdomain: %lld", $2);
+				yyerror("invalid rdomain: %" PRId64, $2);
 				YYERROR;
 			}
 			vmc.vmc_ifflags[vcp_nnics] |= VMIFF_RDOMAIN;
