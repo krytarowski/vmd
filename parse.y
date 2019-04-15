@@ -23,6 +23,9 @@
  */
 
 %{
+#if defined(__NetBSD__)
+#include "compat/misc.h"
+#endif
 #include <sys/types.h>
 #include <sys/queue.h>
 #include <sys/socket.h>
