@@ -136,4 +136,6 @@ typedef u_int32_t	ufsino_t;
 #define	NINDIR(fs)	((fs)->fs_nindir)
 #define	di_shortlink	di_db
 
+int scan_scaled(char *scaled, long long *result);
+
 #endif
